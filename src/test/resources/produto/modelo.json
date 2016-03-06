@@ -1,0 +1,21 @@
+{
+    "_id" : ObjectId("56db4beb76785010ece5a336"),
+    "model" : "produto",
+    "fields" : [ 
+        {
+            "name" : "nome",
+            "type" : "String",
+            "required" : true
+        }, 
+        {
+            "name" : "preco",
+            "type" : "Double",
+            "required" : true
+        }, 
+        {
+            "name" : "codigo",
+            "type" : "Integer",
+            "required" : false
+        }
+    ]
+}
