@@ -40,7 +40,7 @@ public class ValidationService {
 			if (!type.equals(valorCampo.getClass().getSimpleName())) {
 				throw new ValidationException(String.format("Campo '%s' deveria ser do tipo %s", name, type));
 			}
-		} else if (Boolean.TRUE.equals(true)) {
+		} else if (required) {
 			throw new ValidationException(String.format("Campo '%s' é obrigatorio", name));
 		}
 		return name;
