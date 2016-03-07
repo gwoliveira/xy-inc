@@ -22,9 +22,6 @@ import me.impressione.util.IFilters;
 @SuppressWarnings("unchecked")
 @ComponentScan(basePackages = { "me.impressione.service", "me.impressione.controller", "me.impressione.util.mock" })
 public class TestConfiguration {
-	TestConfiguration() {
-		MockitoAnnotations.initMocks(this);
-	}
 
 	@Autowired
 	private IFilters filters;
@@ -37,6 +34,10 @@ public class TestConfiguration {
 
 	@Mock
 	private MongoCollection<Document> modelCollection;
+
+	public TestConfiguration() {
+		MockitoAnnotations.initMocks(this);
+	}
 
 	@Bean
 	@Autowired
@@ -55,7 +56,6 @@ public class TestConfiguration {
 		when(mongoDatabase.getCollection("produto")).thenReturn(collection);
 		when(modelCollection.find(filters.filterByModel(any()))).thenReturn(mock(FindIterable.class));
 
-		
 		FindIterable<Document> findIterable = mock(FindIterable.class);
 		when(modelCollection.find(filters.filterByModel("produto"))).thenReturn(findIterable);
 		String json = "	{\n" + "	    \"_id\" : ObjectId(\"56db4beb76785010ece5a336\"),\n"
