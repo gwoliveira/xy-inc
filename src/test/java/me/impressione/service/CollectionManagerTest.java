@@ -1,5 +1,8 @@
 package me.impressione.service;
 
+import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +19,19 @@ public class CollectionManagerTest {
 
 	@Test
 	public void testExitentCollection() {
-		collectionManager.use("produto");
+		CollectionHelper collectionHelper = collectionManager.use("produto");
+		assertThat(collectionHelper, notNullValue());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testNoExitCollection() {
 		collectionManager.use("notExists");
+	}
+	
+	@Test
+	public void testMetaModelo() {
+		CollectionHelper collectionHelper = collectionManager.use("/");
+		assertThat(collectionHelper, notNullValue());
 	}
 
 }
