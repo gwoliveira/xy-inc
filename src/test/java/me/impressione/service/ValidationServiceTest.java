@@ -71,5 +71,14 @@ public class ValidationServiceTest {
 			assertThat(ex.getMessage(), is("Campo 'preco' deveria ser do tipo Double"));
 		}
 	}
-
+	@Test
+	public void testValidationAlterarID() throws IOException {
+		Document produto = TestsUtil.loadAsDocument("/produto/fail/produtoChangeID.json");
+		try {
+			validationService.validate(produto);
+			fail();
+		} catch (ValidationException ex) {
+			assertThat(ex.getMessage(), is("O campo '_id' não deve ser enviado na requisição"));
+		}
+	}
 }

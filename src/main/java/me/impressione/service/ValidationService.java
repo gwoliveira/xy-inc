@@ -17,7 +17,7 @@ public class ValidationService {
 
 	public void validate(Document doc) {
 		if(doc.containsKey("_id")){
-			throw new ValidationException("Não é permitido alterar o campo '_id'");
+			throw new ValidationException("O campo '_id' não deve ser enviado na requisição");
 		}
 		
 		List<Document> fields = modelo.get("fields", List.class);
