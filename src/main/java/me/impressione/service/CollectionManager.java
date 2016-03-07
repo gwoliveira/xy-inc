@@ -15,10 +15,10 @@ public class CollectionManager {
 			"{\"model\":\"/\",\"fields\":[{\"name\":\"model\",\"type\":\"String\",\"required\":true},{\"name\":\"fields\",\"type\":\"ArrayList\"}]}");
 
 	@Autowired
-	MongoDatabase mongoDatabase;
+	private MongoDatabase mongoDatabase;
 
 	@Autowired
-	IFilters filters;
+	private IFilters filters;
 
 	public CollectionHelper use(String collectionName) {
 

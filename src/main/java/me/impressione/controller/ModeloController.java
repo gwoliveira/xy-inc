@@ -19,7 +19,7 @@ import me.impressione.service.CollectionManager;
 public class ModeloController {
 
 	@Autowired
-	CollectionManager collectionManager;
+	private CollectionManager collectionManager;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public List<Document> modelos() {

@@ -18,7 +18,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 
 import me.impressione.service.CollectionManager;
 import me.impressione.util.IFilters;
@@ -29,17 +28,14 @@ import me.impressione.util.IFilters;
 @SuppressWarnings("unchecked")
 public class RestZupApplicationTests {
 	@Autowired
-	CollectionManager collectionManager;
+	private CollectionManager collectionManager;
 
 	@Autowired
-	MongoCollection<Document> collection;
+	private MongoCollection<Document> collection;
 	
 	@Autowired
-	IFilters filters;
+	private IFilters filters;
 	
-	@Autowired
-	MongoDatabase mongoDatabase;
-
 	@Before
 	public void setUp() {
 		Mockito.reset(collection);

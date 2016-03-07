@@ -15,7 +15,7 @@ import me.impressione.TestConfiguration;
 @SpringApplicationConfiguration(classes = TestConfiguration.class)
 public class CollectionManagerTest {
 	@Autowired
-	CollectionManager collectionManager;
+	private CollectionManager collectionManager;
 
 	@Test
 	public void testExitentCollection() {

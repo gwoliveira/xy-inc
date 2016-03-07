@@ -15,7 +15,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 public class ObjectIdSerializerTest {
-	ObjectIdSerializer objectIdSerializer;
+	private ObjectIdSerializer objectIdSerializer;
 
 	@Before
 	public void setUp() throws Exception {

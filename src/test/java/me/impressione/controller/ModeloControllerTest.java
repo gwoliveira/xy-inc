@@ -28,14 +28,13 @@ public class ModeloControllerTest {
 	private static final Document MODELO_PRODUTO = TestsUtil.loadAsDocument("/produto/modelo.json");
 
 	@Mock
-	CollectionManager collectionManager;
-
+	private CollectionManager collectionManager;
 	@InjectMocks
-	ModeloController modeloController = new ModeloController();
+	private ModeloController modeloController = new ModeloController();
 	@Mock
-	CollectionHelper modeloProdutoHelper;
+	private CollectionHelper modeloProdutoHelper;
 	@Mock
-	CollectionHelper modeloHelper;
+	private CollectionHelper modeloHelper;
 
 	@Before
 	public void setUp() throws Exception {

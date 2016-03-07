@@ -27,20 +27,20 @@ public class TestConfiguration {
 	}
 
 	@Autowired
-	IFilters filters;
+	private IFilters filters;
 
 	@Mock
-	MongoDatabase mongoDatabase;
+	private MongoDatabase mongoDatabase;
 
 	@Mock
-	MongoCollection<Document> collection;
+	private MongoCollection<Document> collection;
 
 	@Mock
-	MongoCollection<Document> modelCollection;
+	private MongoCollection<Document> modelCollection;
 
 	@Bean
 	@Autowired
-	MongoDatabase mongoDatabase(MongoCollection<Document> collection) {
+	public MongoDatabase mongoDatabase(MongoCollection<Document> collection) {
 		initModel();
 		return mongoDatabase;
 	}

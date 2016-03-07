@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class FiltersUtilTest {
-	FiltersUtil filtersUtil;
+	private FiltersUtil filtersUtil;
 
 	@Before
 	public void setUp() throws Exception {
