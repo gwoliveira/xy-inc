@@ -21,10 +21,11 @@ import me.impressione.util.TestsUtil;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ModeloControllerTest {
-	private static final String MODELO_PRODUTO = "produto";
+	private static final String META_MODELO_PATH = "/";
+	private static final String MODELO_PRODUTO_PATH = "produto";
 	private static final String DOCUMENT_ID = "56db575076785016f0e62f19";
 	private static final Document PRODUTO_COMPLETO = TestsUtil.loadAsDocument("/produto/ok/produtoComplete.json");
-	private static final Document MODELO = TestsUtil.loadAsDocument("/produto/modelo.json");
+	private static final Document MODELO_PRODUTO = TestsUtil.loadAsDocument("/produto/modelo.json");
 
 	@Mock
 	CollectionManager collectionManager;
@@ -39,50 +40,50 @@ public class ModeloControllerTest {
 	@Before
 	public void setUp() throws Exception {
 
-		when(collectionManager.use(MODELO_PRODUTO)).thenReturn(modeloProdutoHelper);
-		when(collectionManager.use("/")).thenReturn(modeloHelper);
+		when(collectionManager.use(MODELO_PRODUTO_PATH)).thenReturn(modeloProdutoHelper);
+		when(collectionManager.use(META_MODELO_PATH)).thenReturn(modeloHelper);
 	}
 
 	@Test
 	public void testModelos() {
 		modeloController.modelos();
-		verify(collectionManager).use("/");
+		verify(collectionManager).use(META_MODELO_PATH);
 		verify(modeloHelper).getAll();
 	}
 
 	@Test
 	public void testModeloSave() {
-		modeloController.modeloSave(MODELO);
-		verify(collectionManager).use("/");
-		verify(modeloHelper).save(MODELO);
+		modeloController.modeloSave(MODELO_PRODUTO);
+		verify(collectionManager).use(META_MODELO_PATH);
+		verify(modeloHelper).save(MODELO_PRODUTO);
 	}
 
 	@Test
 	public void testGetAll() {
-		modeloController.getAll(MODELO_PRODUTO);
-		verify(collectionManager).use(MODELO_PRODUTO);
+		modeloController.getAll(MODELO_PRODUTO_PATH);
+		verify(collectionManager).use(MODELO_PRODUTO_PATH);
 		verify(modeloProdutoHelper).getAll();
 	}
 
 	@Test
 	public void testGetOne() {
-		modeloController.getOne(MODELO_PRODUTO, DOCUMENT_ID);
-		verify(collectionManager).use(MODELO_PRODUTO);
+		modeloController.getOne(MODELO_PRODUTO_PATH, DOCUMENT_ID);
+		verify(collectionManager).use(MODELO_PRODUTO_PATH);
 		verify(modeloProdutoHelper).getOne(DOCUMENT_ID);
 	}
 
 	@Test
 	public void testSave() {
-		modeloController.save(MODELO_PRODUTO, PRODUTO_COMPLETO);
-		verify(collectionManager).use(MODELO_PRODUTO);
+		modeloController.save(MODELO_PRODUTO_PATH, PRODUTO_COMPLETO);
+		verify(collectionManager).use(MODELO_PRODUTO_PATH);
 		verify(modeloProdutoHelper).save(PRODUTO_COMPLETO);
 	}
 
 	@Test
 	public void testUpdateGood() {
 		when(modeloProdutoHelper.update(DOCUMENT_ID, PRODUTO_COMPLETO)).thenReturn(true);
-		ResponseEntity<Boolean> update = modeloController.update(MODELO_PRODUTO, DOCUMENT_ID, PRODUTO_COMPLETO);
-		verify(collectionManager).use(MODELO_PRODUTO);
+		ResponseEntity<Boolean> update = modeloController.update(MODELO_PRODUTO_PATH, DOCUMENT_ID, PRODUTO_COMPLETO);
+		verify(collectionManager).use(MODELO_PRODUTO_PATH);
 		verify(modeloProdutoHelper).update(DOCUMENT_ID, PRODUTO_COMPLETO);
 		assertThat(update.getBody(), is(true));
 		assertThat(update.getStatusCode(), is(HttpStatus.OK));
@@ -92,8 +93,8 @@ public class ModeloControllerTest {
 	@Test
 	public void testUpdateBad() {
 		when(modeloProdutoHelper.update(DOCUMENT_ID, PRODUTO_COMPLETO)).thenReturn(false);
-		ResponseEntity<Boolean> update = modeloController.update(MODELO_PRODUTO, DOCUMENT_ID, PRODUTO_COMPLETO);
-		verify(collectionManager).use(MODELO_PRODUTO);
+		ResponseEntity<Boolean> update = modeloController.update(MODELO_PRODUTO_PATH, DOCUMENT_ID, PRODUTO_COMPLETO);
+		verify(collectionManager).use(MODELO_PRODUTO_PATH);
 		verify(modeloProdutoHelper).update(DOCUMENT_ID, PRODUTO_COMPLETO);
 		assertThat(update.getBody(), is(false));
 		assertThat(update.getStatusCode(), is(HttpStatus.BAD_REQUEST));
@@ -102,8 +103,8 @@ public class ModeloControllerTest {
 	@Test
 	public void testDeleteGood() {
 		when(modeloProdutoHelper.delete(DOCUMENT_ID)).thenReturn(true);
-		ResponseEntity<Boolean> delete = modeloController.delete(MODELO_PRODUTO, DOCUMENT_ID);
-		verify(collectionManager).use(MODELO_PRODUTO);
+		ResponseEntity<Boolean> delete = modeloController.delete(MODELO_PRODUTO_PATH, DOCUMENT_ID);
+		verify(collectionManager).use(MODELO_PRODUTO_PATH);
 		verify(modeloProdutoHelper).delete(DOCUMENT_ID);
 		assertThat(delete.getBody(), is(true));
 		assertThat(delete.getStatusCode(), is(HttpStatus.OK));
@@ -112,8 +113,8 @@ public class ModeloControllerTest {
 	@Test
 	public void testDeleteBad() {
 		when(modeloProdutoHelper.delete(DOCUMENT_ID)).thenReturn(false);
-		ResponseEntity<Boolean> delete = modeloController.delete(MODELO_PRODUTO, DOCUMENT_ID);
-		verify(collectionManager).use(MODELO_PRODUTO);
+		ResponseEntity<Boolean> delete = modeloController.delete(MODELO_PRODUTO_PATH, DOCUMENT_ID);
+		verify(collectionManager).use(MODELO_PRODUTO_PATH);
 		verify(modeloProdutoHelper).delete(DOCUMENT_ID);
 		assertThat(delete.getBody(), is(false));
 		assertThat(delete.getStatusCode(), is(HttpStatus.BAD_REQUEST));
