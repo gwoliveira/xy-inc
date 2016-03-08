@@ -6,31 +6,39 @@ import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import me.impressione.service.CollectionManager;
 
 @Controller
 @ResponseBody
+
 public class ModeloController {
 
 	@Autowired
 	private CollectionManager collectionManager;
 
+	@RequestMapping(value = "/", method = RequestMethod.GET, params = "id")
+	public Document modelo(@RequestParam("id") String documentID) {
+		return collectionManager.use("/").getOne(documentID);
+	}
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public List<Document> modelos() {
 		return collectionManager.use("/").getAll();
 	}
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@CrossOrigin(origins = "http://localhost:9000/")
 	public Document modeloSave(@RequestBody Document doc) {
 		return collectionManager.use("/").save(doc);
 	}
-	
 
 	@RequestMapping(value = "/{modelo}", method = RequestMethod.GET)
 	public List<Document> getAll(@PathVariable("modelo") String modelo) {

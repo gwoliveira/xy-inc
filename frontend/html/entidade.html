@@ -1,0 +1,27 @@
+<div class="jumbotron">
+  <div class="row">
+
+    <div class="col-xs-12">
+      <h2>{{entidade.model}}</h2>
+      <form class="form-horizontal" ng-submit="enviarModelo()">
+        <div class="form-group">
+          <div class="col-sm-11" ng-repeat="campo in entidade.fields">
+            <input type="text" class="form-control" placeholder="{{campo.name}}" ng-model="fields[$index][campo.name]" required="campo.required">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class=" col-sm-10">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-sm-12">
+      <div class="list-group">
+        <a href="{{modelo._id}}" class="list-group-item" ng-repeat="modelo in modelos">{{modelo.model}}</a>
+      </div>
+    </div>
+  </div>
+</div>
