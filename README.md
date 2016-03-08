@@ -5,7 +5,7 @@
 # Instalação:
   1. instalar o [Compose](https://docs.docker.com/compose/install/) 
   2. executar o comando ```bash  docker-compose run gwoliveira/restzup ``` 
-  3. abrir no navegador [http://localhost:9000]() para acessar o client
+  3. abrir no navegador [http://localhost:9000](http://localhost:9000) para acessar o client
 
 ## Arquitetura backend:
   * [MongoDB] (https://www.mongodb.org/)
