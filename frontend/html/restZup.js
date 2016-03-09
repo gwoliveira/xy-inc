@@ -1,7 +1,7 @@
 var app = angular.module('restZup', ['ngResource', 'ngRoute']);
 
 app.factory('metaModeloService', ['$resource', function($resource) {
-  return $resource('/RestZUP');
+  return $resource('/RestZUP/');
 }]);
 
 app.controller("modeloController", function($scope, metaModeloService) {
@@ -49,9 +49,22 @@ app.controller("entidadeController", function($scope, $routeParams, $resource, m
   $scope.fields = {};
 
 
+  $scope.fieldType = function(fieldType, outra) {
+    if (fieldType == "Integer" || fieldType == "Double") {
+      return "number";
+    }
+    if (fieldType == "Boolean") {
+      return "checkbox";
+    }
 
+  };
+  $scope.fieldExtras = function() {
+    return 'step="0.01"';
+  };
   $scope.enviarEntidade = function() {
-    console.log($scope.fields);
+    modeloRest.save($scope.fields, function success() {
+      $scope.dados = modeloRest.query();
+    });
   };
 
 

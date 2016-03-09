@@ -10,7 +10,20 @@
       <form class="form-horizontal" ng-submit="enviarEntidade()">
         <div class="form-group" ng-repeat="campo in entidade.fields">
           <div class="col-sm-11">
-            <input type="text" class="form-control" placeholder="{{campo.name}}" ng-model="fields[campo.name]" required="campo.required">
+
+            <input ng-if="campo.type == 'String'" type="text" class="form-control" placeholder="{{campo.name}}" ng-model="fields[campo.name]" ng-required="campo.required">
+            <input ng-if="campo.type == 'Integer'" type="number" class="form-control" placeholder="{{campo.name}}" ng-model="fields[campo.name]" ng-required="campo.required">
+            <input ng-if="campo.type == 'Double'" type="number" step="0.01" class="form-control" placeholder="{{campo.name}}" ng-model="fields[campo.name]" ng-required="campo.required">
+            <div class="checkbox" ng-if="campo.type == 'Boolean'">
+              <label>
+                <input type="checkbox" ng-model="fields[campo.name]" ng-init="fields[campo.name]=false">
+                {{campo.name}}
+              </label>
+            </div>
+
+          </div>
+          <div class="col-sm-1">
+            <span ng-show="campo.required" class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
           </div>
         </div>
 
@@ -35,7 +48,7 @@
         <tbody>
           <tr ng-repeat="dado in dados">
             <td ng-repeat="campo in entidade.fields">{{dado[campo.name]}}</td>
-            <td>
+            <td class="col-xs-1">
               <button class="btn btn-success btn-xs" type="button" title="Editar" ng-click="addCampo($index)">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
               </button>
