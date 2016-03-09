@@ -49,7 +49,7 @@
           <tr ng-repeat="dado in dados">
             <td ng-repeat="campo in entidade.fields">{{dado[campo.name]}}</td>
             <td class="col-xs-1">
-              <button class="btn btn-success btn-xs" type="button" title="Editar" ng-click="addCampo($index)">
+              <button class="btn btn-success btn-xs" type="button" title="Editar" ng-click="editar(dado)">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
               </button>
               <button class="btn btn-danger btn-xs" type="button" title="Ecluir" ng-click="removeCampo($index)">

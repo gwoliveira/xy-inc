@@ -43,29 +43,37 @@ app.controller("entidadeController", function($scope, $routeParams, $resource, m
   $scope.entidade = metaModeloService.get({
     id: $routeParams.modelo
   }, function success(modelo) {
-    modeloRest = $resource('/RestZUP/' + modelo.model + "/:id");
+    modeloRest = $resource('/RestZUP/' + modelo.model + "/:id", null, {
+      'update': {
+        method: 'PUT'
+      }
+    });
     $scope.dados = modeloRest.query();
   });
   $scope.fields = {};
 
-
-  $scope.fieldType = function(fieldType, outra) {
-    if (fieldType == "Integer" || fieldType == "Double") {
-      return "number";
-    }
-    if (fieldType == "Boolean") {
-      return "checkbox";
-    }
+  $scope.editar = function(campo) {
+    $scope.fields = angular.copy(campo);
 
   };
-  $scope.fieldExtras = function() {
-    return 'step="0.01"';
-  };
+
   $scope.enviarEntidade = function() {
-    modeloRest.save($scope.fields, function success() {
-      $scope.dados = modeloRest.query();
-    });
+    if ($scope.fields._id) {
+      var id = $scope.fields._id;
+      delete($scope.fields._id);
+      modeloRest.update({
+        id: id
+      }, $scope.fields, function success() {
+        $scope.dados = modeloRest.query();
+      });
+    } else {
+      modeloRest.save($scope.fields, function success() {
+        $scope.dados = modeloRest.query();
+      });
+    }
   };
+
+
 
 
 });
