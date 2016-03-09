@@ -35,11 +35,26 @@ app.controller("modeloController", function($scope, metaModeloService) {
   };
 });
 
-app.controller("entidadeController", function($scope, $routeParams, metaModeloService) {
+app.controller("entidadeController", function($scope, $routeParams, $resource, metaModeloService) {
+
+  var modeloRest;
+  $scope.dados = [];
   $scope.params = $routeParams;
-  $scope.entidade = metaModeloService.get({id:$routeParams.modelo});
-  $scope.fields = [];
-  console.log($scope.entidade);
+  $scope.entidade = metaModeloService.get({
+    id: $routeParams.modelo
+  }, function success(modelo) {
+    modeloRest = $resource('/RestZUP/' + modelo.model + "/:id");
+    $scope.dados = modeloRest.query();
+  });
+  $scope.fields = {};
+
+
+
+  $scope.enviarEntidade = function() {
+    console.log($scope.fields);
+  };
+
+
 });
 
 app.config(function($routeProvider, $locationProvider) {
