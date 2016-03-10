@@ -15,7 +15,7 @@
   * [Spring Boot](http://projects.spring.io/spring-boot/)
     * container spring auto configurável, economia de tempo de setup do projeto.
     * injeção de dependências.
-  * [Juni](http://junit.org/)
+  * [Junit](http://junit.org/)
     * ferramenta para criação de testes unitários java.
   * [Mockito](http://mockito.org/)
     * framework de criação dos mocks para os testes.
