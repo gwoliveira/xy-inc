@@ -1,44 +1,46 @@
 <div class="jumbotron">
   <div class="row">
     <div class="alert alert-warning col-sm-11" role="alert" ng-show="mensagem">
-       <button type="button" class="close" ng-click="mensagem = ''"><span aria-hidden="true">&times;</span></button>
+      <button type="button" class="close" ng-click="mensagem = ''">
+        <span aria-hidden="true">&times;</span>
+      </button>
       {{mensagem}}
     </div>
-    <div class="col-xs-12 text-center">
-      <h2>{{entidade.model}}</h2>
-    </div>
 
-    <div class="col-xs-12">
-
-      <form class="form-horizontal" ng-submit="enviarEntidade()">
-        <div class="form-group" ng-repeat="campo in entidade.fields">
-          <div class="col-sm-11">
-
-            <input ng-if="campo.type == 'String'" type="text" class="form-control" placeholder="{{campo.name}}" ng-model="fields[campo.name]" ng-required="campo.required">
-            <input ng-if="campo.type == 'Integer'" type="number" class="form-control" placeholder="{{campo.name}}" ng-model="fields[campo.name]" ng-required="campo.required">
-            <input ng-if="campo.type == 'Double'" type="number" step="0.01" class="form-control" placeholder="{{campo.name}}" ng-model="fields[campo.name]" ng-required="campo.required">
-            <div class="checkbox" ng-if="campo.type == 'Boolean'">
-              <label>
-                <input type="checkbox" ng-model="fields[campo.name]" ng-init="fields[campo.name]=false">
-                {{campo.name}}
-              </label>
-            </div>
-
-          </div>
-          <div class="col-sm-1">
-            <span ng-show="campo.required" class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
-          </div>
+    <form class="form-horizontal" ng-submit="enviarEntidade()">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title text-center">{{entidade.model}}</h3>
         </div>
 
-        <div class="form-group">
-          <div class="col-sm-2 col-sm-offset-9">
-            <a href="/" class="btn btn-default">voltar</a>
+        <div class="panel-body">
+          <div class="form-group" ng-repeat="campo in entidade.fields">
+            <div class="col-sm-11">
 
+              <input ng-if="campo.type == 'String'" type="text" class="form-control" placeholder="{{campo.name}}" ng-model="fields[campo.name]" ng-required="campo.required">
+              <input ng-if="campo.type == 'Integer'" type="number" class="form-control" placeholder="{{campo.name}}" ng-model="fields[campo.name]" ng-required="campo.required">
+              <input ng-if="campo.type == 'Double'" type="number" step="0.01" class="form-control" placeholder="{{campo.name}}" ng-model="fields[campo.name]" ng-required="campo.required">
+              <div class="checkbox" ng-if="campo.type == 'Boolean'">
+                <label>
+                  <input type="checkbox" ng-model="fields[campo.name]" ng-init="fields[campo.name]=false">
+                  {{campo.name}}
+                </label>
+              </div>
+
+            </div>
+            <div class="col-sm-1">
+              <span ng-show="campo.required" class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer clearfix">
+          <div class="pull-right">
+            <a href="/" class="btn btn-default">voltar</a>
             <button type="submit" class="btn btn-primary">Salvar</button>
           </div>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
 
     <div class="col-sm-12">
       <table class="table table-hover">
@@ -63,8 +65,6 @@
         </tbody>
       </table>
     </div>
-
-
 
   </div>
 </div>
