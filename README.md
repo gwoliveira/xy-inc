@@ -4,8 +4,9 @@
 
 # Instalação:
   1. instalar o [Compose](https://docs.docker.com/compose/install/) 
-  2. executar o comando ``` docker-compose run gwoliveira/restzup ``` 
-  3. abrir no navegador [http://localhost:9000](http://localhost:9000) para acessar o client
+  2. clonar este repositorio ```git clone https://github.com/gwoliveira/xy-inc.git```
+  3. executar o comando ``` docker-compose up ``` 
+  4. abrir no navegador [http://localhost:9000](http://localhost:9000) para acessar o client
 
 ## Arquitetura backend:
   * [MongoDB] (https://www.mongodb.org/)
@@ -32,3 +33,6 @@
   * [Codacy](https://www.codacy.com)
     * analise de codigo.
     
+## Deploy
+  * [Docker](http://www.docker.com/)
+  * [Docker Compose](http://www.docker.com/products/docker-compose)
