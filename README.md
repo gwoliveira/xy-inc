@@ -6,7 +6,8 @@
   1. instale o [Compose](https://docs.docker.com/compose/install/) 
   2. clone este repositório ```git clone https://github.com/gwoliveira/xy-inc.git```
   3. execute o comando ``` docker-compose up ``` 
-  4. abra no navegador [http://localhost:9000](http://localhost:9000) para acessar o client
+  4. abra no navegador <http://localhost:9000> para acessar o client
+  5. a API esta exposta no endereço <http://localhost:8080>
 
 ## Arquitetura backend:
   * [MongoDB] (https://www.mongodb.org/)
