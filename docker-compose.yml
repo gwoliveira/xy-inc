@@ -1,0 +1,20 @@
+version: '2'
+services:
+  mongo:
+    image: tutum/mongodb:3.2
+    environment:
+     - MONGODB_PASS="mypass"
+     - MONGODB_DATABASE="admin"
+     - AUTH=no
+  backend:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+  frontend:
+    build: ./frontend
+    ports:
+      - "9000:80"
+    depends_on:
+      - backend
