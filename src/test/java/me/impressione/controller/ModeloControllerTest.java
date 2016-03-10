@@ -24,6 +24,7 @@ public class ModeloControllerTest {
 	private static final String META_MODELO_PATH = "/";
 	private static final String MODELO_PRODUTO_PATH = "produto";
 	private static final String DOCUMENT_ID = "56db575076785016f0e62f19";
+	private static final String MODELO_ID = "56df36ad2de2130d19d23251";
 	private static final Document PRODUTO_COMPLETO = TestsUtil.loadAsDocument("/produto/ok/produtoComplete.json");
 	private static final Document MODELO_PRODUTO = TestsUtil.loadAsDocument("/produto/modelo.json");
 
@@ -48,6 +49,13 @@ public class ModeloControllerTest {
 		modeloController.modelos();
 		verify(collectionManager).use(META_MODELO_PATH);
 		verify(modeloHelper).getAll();
+	}
+	
+	@Test
+	public void testModeloGetOne() {
+		modeloController.modelo(MODELO_ID);
+		verify(collectionManager).use(META_MODELO_PATH);
+		verify(modeloHelper).getOne(MODELO_ID);
 	}
 
 	@Test
