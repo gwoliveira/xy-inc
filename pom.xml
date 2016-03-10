@@ -21,6 +21,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
+		<start-class>me.impressione.RestZupApplication</start-class>
 	</properties>
 
 	<dependencies>
@@ -64,7 +65,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				 <version>0.7.6.201602180812</version>
+				<version>0.7.6.201602180812</version>
 				<executions>
 					<execution>
 						<id>default-prepare-agent</id>
@@ -83,16 +84,16 @@
 				<!-- Specify classes to ignore in code coverage -->
 				<configuration>
 					<excludes>
-					    <exclude>**/me/impressione/config/**</exclude>
-					    <exclude>**/me/impressione/ServletInitializer**</exclude>
-					    <exclude>**/me/impressione/RestZupApplication**</exclude>
+						<exclude>**/me/impressione/config/**</exclude>
+						<exclude>**/me/impressione/ServletInitializer**</exclude>
+						<exclude>**/me/impressione/RestZupApplication**</exclude>
 					</excludes>
 				</configuration>
 			</plugin>
 			<plugin>
-			    <groupId>org.eluder.coveralls</groupId>
-			    <artifactId>coveralls-maven-plugin</artifactId>
-			    <version>4.1.0</version>
+				<groupId>org.eluder.coveralls</groupId>
+				<artifactId>coveralls-maven-plugin</artifactId>
+				<version>4.1.0</version>
 			</plugin>
 		</plugins>
 	</build>
