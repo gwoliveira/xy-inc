@@ -15,7 +15,7 @@ import me.impressione.util.ObjectIdSerializer;
 @Configuration
 public class AppConfig {
 
-	private static final String MONGODB_URI = "mongodb://admin:mypass@127.0.0.1/?authSource=admin&authMechanism=MONGODB-CR";
+	private static final String MONGODB_URI = "mongodb://mongo/";
 
 	@Bean
 	public MongoClient mongoClient() {

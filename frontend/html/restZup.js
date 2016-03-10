@@ -26,6 +26,13 @@ app.controller("modeloController", function($scope, metaModeloService) {
   $scope.enviarModelo = function() {
     metaModeloService.save($scope.meta, function success() {
       $scope.modelos = metaModeloService.query({});
+      $scope.meta = {
+        model: "",
+        fields: [{
+          required: false,
+          type: "String"
+        }]
+      };
     }, function error(httpError) {
       $scope.mensagem = httpError.data.message;
     });
@@ -69,12 +76,14 @@ app.controller("entidadeController", function($scope, $routeParams, $resource, m
         id: id
       }, $scope.fields, function success() {
         $scope.dados = modeloRest.query();
+        $scope.fields = {};
       }, function error(httpError) {
         $scope.mensagem = httpError.data.message;
       });
     } else {
       modeloRest.save($scope.fields, function success() {
         $scope.dados = modeloRest.query();
+        $scope.fields = {};
       }, function error(httpError) {
         $scope.mensagem = httpError.data.message;
       });
