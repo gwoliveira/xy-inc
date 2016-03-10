@@ -19,7 +19,7 @@
     * ferramenta para criação de testes unitários java.
   * [Mockito](http://mockito.org/)
     * framework de criação dos mocks para os testes.
-    * 
+
 ## Arquitetura frontend:
   * [Bootstrap](http://getbootstrap.com/)
   * [AngularJS](https://angularjs.org/)
