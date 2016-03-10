@@ -22,7 +22,7 @@ app.controller("modeloController", function($scope, metaModeloService) {
     });
   };
 
-  $scope.enviarModelo = function(minha) {
+  $scope.enviarModelo = function() {
     metaModeloService.save($scope.meta, function success() {
       $scope.modelos = metaModeloService.query({});
     });
@@ -75,7 +75,33 @@ app.controller("entidadeController", function($scope, $routeParams, $resource, m
 
 
 
+  $scope.excluirEntidade = function(campo) {
+    if (confirm("sure to delete")) {
+      modeloRest.delete({id:campo._id}, function success() {
+        $scope.dados = modeloRest.query();
+      });
+    }
+  };
 
+
+
+
+});
+
+app.controller('ModalInstanceCtrl', function($scope, $uibModalInstance, items) {
+
+  $scope.items = items;
+  $scope.selected = {
+    item: $scope.items[0]
+  };
+
+  $scope.ok = function() {
+    $uibModalInstance.close($scope.selected.item);
+  };
+
+  $scope.cancel = function() {
+    $uibModalInstance.dismiss('cancel');
+  };
 });
 
 app.config(function($routeProvider, $locationProvider) {
