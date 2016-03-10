@@ -14,6 +14,7 @@ app.controller("modeloController", function($scope, metaModeloService) {
   };
 
   $scope.modelos = metaModeloService.query({});
+  $scope.mensagem = "";
 
   $scope.addCampo = function(pos) {
     $scope.meta.fields.splice(pos + 1, 0, {
@@ -25,6 +26,8 @@ app.controller("modeloController", function($scope, metaModeloService) {
   $scope.enviarModelo = function() {
     metaModeloService.save($scope.meta, function success() {
       $scope.modelos = metaModeloService.query({});
+    }, function error(httpError) {
+      $scope.mensagem = httpError.data.message;
     });
   };
 
@@ -39,6 +42,7 @@ app.controller("entidadeController", function($scope, $routeParams, $resource, m
 
   var modeloRest;
   $scope.dados = [];
+  $scope.mensagem = "";
   $scope.params = $routeParams;
   $scope.entidade = metaModeloService.get({
     id: $routeParams.modelo
@@ -65,10 +69,14 @@ app.controller("entidadeController", function($scope, $routeParams, $resource, m
         id: id
       }, $scope.fields, function success() {
         $scope.dados = modeloRest.query();
+      }, function error(httpError) {
+        $scope.mensagem = httpError.data.message;
       });
     } else {
       modeloRest.save($scope.fields, function success() {
         $scope.dados = modeloRest.query();
+      }, function error(httpError) {
+        $scope.mensagem = httpError.data.message;
       });
     }
   };
@@ -77,8 +85,12 @@ app.controller("entidadeController", function($scope, $routeParams, $resource, m
 
   $scope.excluirEntidade = function(campo) {
     if (confirm("sure to delete")) {
-      modeloRest.delete({id:campo._id}, function success() {
+      modeloRest.delete({
+        id: campo._id
+      }, function success() {
         $scope.dados = modeloRest.query();
+      }, function error(httpError) {
+        $scope.mensagem = httpError.data.message;
       });
     }
   };

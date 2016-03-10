@@ -42,7 +42,7 @@ public class ValidationService {
 
 		if (doc.containsKey(name)) {
 			Object valorCampo = doc.get(name);
-			if (!type.equals(valorCampo.getClass().getSimpleName())) {
+			if (!type.equals(valorCampo.getClass().getSimpleName()) && !("Double".equals(type) && "Integer".equals(valorCampo.getClass().getSimpleName()))) {
 				throw new ValidationException(String.format("Campo '%s' deveria ser do tipo %s", name, type));
 			}
 		} else if (required) {

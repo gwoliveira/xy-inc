@@ -1,6 +1,9 @@
 <div class="jumbotron">
   <div class="row">
-
+    <div class="alert alert-warning col-sm-11" role="alert" ng-show="mensagem">
+       <button type="button" class="close" ng-click="mensagem = ''"><span aria-hidden="true">&times;</span></button>
+      {{mensagem}}
+    </div>
     <div class="col-xs-12 text-center">
       <h2>{{entidade.model}}</h2>
     </div>
