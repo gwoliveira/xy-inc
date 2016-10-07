@@ -3,7 +3,7 @@ services:
   mongo:
     image: tutum/mongodb:3.2
     environment:
-     - MONGODB_PASS="mypass"
+     - MONGODB_PASS=""
      - MONGODB_DATABASE="admin"
      - AUTH=no
   backend:
