@@ -1,4 +1,4 @@
-FROM maven
+FROM maven:3-jdk-8
 
 WORKDIR /code
 ADD pom.xml /code/pom.xml  
