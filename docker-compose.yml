@@ -8,13 +8,14 @@ services:
      - AUTH=no
   backend:
     build: .
-    ports:
-      - "8080:8080"
     depends_on:
       - mongo
   frontend:
     build: ./frontend
-    ports:
-      - "9000:80"
     depends_on:
       - backend
+    labels:
+        traefik.enable: "true"
+        traefik.frontend.rule: "Host:assetmanagement.impressione.me"
+        traefik.port: "80"
+        traefik.frontend.redirect.entryPoint: "https"
